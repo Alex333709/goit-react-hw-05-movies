@@ -1,23 +1,22 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { Nav, NavItem } from '../Navigation/Navigation.styled'; // Імпорт стилів
+import { useLocation, NavLink } from 'react-router-dom';
+import { Nav, NavItem } from '../Navigation/Navigation.styled';
 
 const Navigation = () => {
+  const location = useLocation();
+  const isActive = path => location.pathname === path;
+
   return (
     <Nav>
       <NavItem>
-        <NavLink
-          to="/"
-          activeClassName="activeNavLink" // Залишаємо activeClassName для активного стану
-          end
-        >
+        <NavLink to="/" className={isActive('/') ? 'activeNavLink' : ''}>
           Home
         </NavLink>
       </NavItem>
       <NavItem>
         <NavLink
           to="/movies"
-          activeClassName="activeNavLink" // Залишаємо activeClassName для активного стану
+          className={isActive('/movies') ? 'activeNavLink' : ''}
         >
           Movies
         </NavLink>

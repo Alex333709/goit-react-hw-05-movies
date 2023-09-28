@@ -10,6 +10,3 @@ export const Nav = styled.nav`
 export const NavItem = styled.div`
   padding: 1rem;
 `;
-// const activeStyles = {
-//   className: styles.activeNavLink,
-// };
