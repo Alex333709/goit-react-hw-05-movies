@@ -8,7 +8,7 @@ const appRoot = ReactDOM.createRoot(root);
 
 appRoot.render(
   <React.StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename="/goit-react-hw-05-movies">
       <App />
     </BrowserRouter>
   </React.StrictMode>
