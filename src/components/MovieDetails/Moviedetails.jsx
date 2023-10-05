@@ -6,10 +6,10 @@ import {
   Link,
   Routes,
   Route,
+  Outlet,
 } from 'react-router-dom';
 import fetchMovies from '../../services/movie-api';
 
-// Імпортуємо стилізацію зі styled-components
 import {
   MovieDetailsContainer,
   GoBackButton,
@@ -77,6 +77,7 @@ const MovieDetailsPage = () => {
               <Route path="cast" element={<Cast />} />
               <Route path="reviews" element={<Reviews movieId={movieId} />} />
             </Routes>
+            <Outlet />
           </Suspense>
         </>
       )}

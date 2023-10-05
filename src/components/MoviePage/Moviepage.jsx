@@ -27,7 +27,6 @@ const MoviesPage = () => {
         .fetchSearchMovie(queryValue)
         .then(results => setMovies(results))
         .catch(() => {
-          // Якщо прийшла помилка або пустий результат, то встановимо пустий масив
           setMovies([]);
         });
     }

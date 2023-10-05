@@ -1,36 +1,36 @@
-import { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import fetchMovies from '../../services/movie-api';
-import { ReviewList, ReviewItem, Author } from './Review.styled'; // Імпорт стилів
 
 const Reviews = ({ movieId }) => {
-  const [reviews, setReviews] = useState([]);
+  const [data, setData] = useState([]);
 
   useEffect(() => {
+    if (!movieId) return;
+
     fetchMovies
       .fetchMovieReviews(movieId)
-      .then(({ results }) => setReviews(results));
+      .then(reviewsData => {
+        if (reviewsData && reviewsData.results) {
+          setData(reviewsData.results);
+        } else {
+          setData([]);
+        }
+      })
+      .catch(error => {
+        console.error(error);
+        setData([]);
+      });
   }, [movieId]);
 
   return (
-    <>
-      {reviews.length !== 0 ? (
-        <ReviewList>
-          {' '}
-          {/* Використовуємо ReviewList замість <ul> */}
-          {reviews.map(({ id, author, content }) => (
-            <ReviewItem key={id}>
-              {' '}
-              {/* Використовуємо ReviewItem замість <li> */}
-              <Author>Author: {author}</Author>{' '}
-              {/* Використовуємо Author замість <p> */}
-              <p>{content}</p>
-            </ReviewItem>
-          ))}
-        </ReviewList>
-      ) : (
-        <p>There are no reviews for this movie yet...</p>
-      )}
-    </>
+    <ul>
+      {data.map(({ id, author, content }) => (
+        <li key={id}>
+          <h3>{author}</h3>
+          <p>{content}</p>
+        </li>
+      ))}
+    </ul>
   );
 };
 

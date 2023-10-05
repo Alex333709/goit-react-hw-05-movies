@@ -21,6 +21,7 @@ const fetchMovies = {
   },
 
   fetchMoviesById(movieId) {
+    // console.log('Fetching movie with ID:', movieId);
     return axios
       .get(`${BASE_URL}/movie/${movieId}?api_key=${API_KEY}`)
       .then(response => response.data)
