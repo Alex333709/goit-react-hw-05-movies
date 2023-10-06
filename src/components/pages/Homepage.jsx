@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import fetchMovies from '../../services/movie-api';
+import { Link } from 'react-router-dom';
 import {
   TrendingMoviesContainer,
   TrendingMoviesList,
@@ -28,7 +29,7 @@ const TrendingMovies = () => {
       <TrendingMoviesList>
         {trendMovies.map(movie => (
           <TrendingMovieItem key={movie.id}>
-            <TrendingMovieLink href={`/movies/${movie.id}`}>
+            <TrendingMovieLink as={Link} to={`/movies/${movie.id}`}>
               {movie.title || movie.name}
             </TrendingMovieLink>
           </TrendingMovieItem>

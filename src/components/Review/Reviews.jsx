@@ -2,9 +2,13 @@ import React, { useEffect, useState } from 'react';
 import fetchMovies from '../../services/movie-api';
 
 const Reviews = ({ movieId }) => {
+  // Додано логування movieId для перевірки
+  console.log('Received movieId:', movieId);
+
   const [data, setData] = useState([]);
 
   useEffect(() => {
+    console.log('Received movieId:', movieId); // Add this line
     if (!movieId) return;
 
     fetchMovies

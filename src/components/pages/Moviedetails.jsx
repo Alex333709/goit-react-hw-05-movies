@@ -6,7 +6,6 @@ import {
   Link,
   Routes,
   Route,
-  Outlet,
 } from 'react-router-dom';
 import fetchMovies from '../../services/movie-api';
 
@@ -29,7 +28,7 @@ const MovieDetailsPage = () => {
   const { movieId } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
-  const [movie, setMovie] = useState([]);
+  const [movie, setMovie] = useState(null);
   const searchQuery = new URLSearchParams(location.search).get('query');
 
   useEffect(() => {
@@ -37,12 +36,16 @@ const MovieDetailsPage = () => {
   }, [movieId]);
 
   const onGoBack = () => {
-    navigate(`/movies?query=${searchQuery}`);
+    if (searchQuery) {
+      navigate(`/movies?query=${searchQuery}`);
+    } else {
+      navigate('/movies');
+    }
   };
 
   return (
     <MovieDetailsContainer>
-      {movie && (
+      {movie ? (
         <>
           <GoBackButton type="button" onClick={onGoBack}>
             Go back
@@ -77,9 +80,10 @@ const MovieDetailsPage = () => {
               <Route path="cast" element={<Cast />} />
               <Route path="reviews" element={<Reviews movieId={movieId} />} />
             </Routes>
-            <Outlet />
           </Suspense>
         </>
+      ) : (
+        <p>Loading...</p>
       )}
     </MovieDetailsContainer>
   );

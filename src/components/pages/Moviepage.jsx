@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, Link } from 'react-router-dom';
 import fetchMovies from '../../services/movie-api';
 
 const MoviesPage = () => {
@@ -65,7 +65,7 @@ const MoviesPage = () => {
         <ul>
           {movies.map(({ id, title }) => (
             <li key={id}>
-              <a href={`/movies/${id}?query=${searchQuery}`}>{title}</a>
+              <Link to={`/movies/${id}?query=${searchQuery}`}>{title}</Link>
             </li>
           ))}
         </ul>
@@ -73,5 +73,4 @@ const MoviesPage = () => {
     </>
   );
 };
-
 export default MoviesPage;

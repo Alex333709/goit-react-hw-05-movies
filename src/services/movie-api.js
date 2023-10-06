@@ -8,7 +8,10 @@ const fetchMovies = {
     return axios
       .get(`${BASE_URL}/trending/movie/day?api_key=${API_KEY}`)
       .then(response => response.data.results)
-      .catch(error => error);
+      .catch(error => {
+        console.error('There was an error:', error);
+        // або показати повідомлення користувачеві
+      });
   },
 
   fetchSearchMovie(querySearch) {
@@ -17,7 +20,10 @@ const fetchMovies = {
         `${BASE_URL}/search/movie?api_key=${API_KEY}&page=1&include_adult=false&query=${querySearch}`
       )
       .then(response => response.data.results)
-      .catch(error => error);
+      .catch(error => {
+        console.error('There was an error:', error);
+        // або показати повідомлення користувачеві
+      });
   },
 
   fetchMoviesById(movieId) {
@@ -25,21 +31,30 @@ const fetchMovies = {
     return axios
       .get(`${BASE_URL}/movie/${movieId}?api_key=${API_KEY}`)
       .then(response => response.data)
-      .catch(error => error);
+      .catch(error => {
+        console.error('There was an error:', error);
+        // або показати повідомлення користувачеві
+      });
   },
 
   fetchMovieCast(movieId) {
     return axios
       .get(`${BASE_URL}/movie/${movieId}/credits?api_key=${API_KEY}`)
       .then(response => response.data)
-      .catch(error => error);
+      .catch(error => {
+        console.error('There was an error:', error);
+        // або показати повідомлення користувачеві
+      });
   },
 
   fetchMovieReviews(movieId) {
     return axios
       .get(`${BASE_URL}/movie/${movieId}/reviews?api_key=${API_KEY}`)
       .then(response => response.data)
-      .catch(error => error);
+      .catch(error => {
+        console.error('There was an error:', error);
+        // або показати повідомлення користувачеві
+      });
   },
 };
 
